@@ -1,0 +1,67 @@
+
+//for account status
+
+method CheckAccountClosed()
+	if (statusText = "AVSLUTAD" or "AVSLUTAT")
+		Print("Kontot avslutat")
+
+//for engagementType and productText 
+
+if(engagementType = "D" or "T")
+	if(engagementType = "D")
+		method addSPARKONTOaccount()
+	
+	ifelse(productText="TILLVÄXT")
+		method addTILLVÄXTaccount()
+
+	ifelse(productText="BÖRS")
+		method addBÖRSaccount()
+	
+	ifelse(productText="SPARKONTO FIX" or "SPARKTO FIX" or "FÖRETAGSKTO FIX")
+		method addSPARKONTOaccount()
+
+if(engagementType = "L")
+	method addLoanAccount()
+
+//fields needed for every product type and order
+
+addSPARKONTOaccount()
+
+	"Aktuell räntesats"=Interest1
+        "Inkomstränta"=ReceivedInterest
+        "Tillgodohavande"=Balance
+        "Preliminärskatt"=PreliminaryTax
+        "Din andel av kapital: " + CapitalSharePercentage + "%", 	BalanceShare
+	"Din andel av ränta: " + ReceivedInterestSharePercentage "%",	ReceivedInterestShare
+	
+	
+	CheckAccountClosed()
+
+addLoanAccount()
+	
+	"Utgiftsränta"=PaidInterest
+        "Skuld"=Debth
+        "Din andel av kapital:"=CapitalSharePercentage
+        "Din andel av ränta:" =PaidInterestSharePercentage
+
+	CheckAccountClosed()
+
+addTILLVÄXTaccount()
+	if(account closed Or ReceivedInterest > 0 Or PreliminaryTax > 0)
+		"Inkomstränta"=ReceivedInterest
+		"Tillgodohavande"=Balance
+		"Preliminärskatt"=PreliminaryTax
+		"Din andel av kapital: " + CapitalSharePercentage + "%", 	BalanceShare
+		"Din andel av ränta: " + ReceivedInterestSharePercentage "%",	ReceivedInterestShare
+
+	else
+		"Tillgodohavande" = Balance
+		"Din andel av kapital: " + CapitalSharePercentage + "%",	BalanceShare
+
+
+addBÖRSaccount()
+	if(account closed)
+		"Utbetalt belopp"=InterestOverDesk
+		"Kapitalvinst"=ReceivedInterest
+	else
+		"Tillgodohavande"=Balance
