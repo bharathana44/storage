@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "14aae89e-784f-49a1-9ffd-5b5048989d87",
+		"name": "csvtopdf",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32035975"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8090/csv/generate-pdf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountDataCsv\":\"D:/Users/BHAB/Downloads/CustomerDataMulti-main/CustomerDataMulti-main/src/main/resources/inputFiles/Dev1_YearlyStatementEngagements2022.csv\",\r\n    \"summaryDataCsv\":\"D:/Users/BHAB/Downloads/CustomerDataMulti-main/CustomerDataMulti-main/src/main/resources/inputFiles/Dev1_YearlyStatementOverview2022.csv\",\r\n    \"destPdfPath\":\"D:/Users/BHAB/Downloads/CustomerDataMulti-main/CustomerDataMulti-main/pdfconverted/\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/csv/generate-pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"csv",
+						"generate-pdf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
